@@ -1,17 +1,9 @@
 9 kinds of fault bearing signals
-
 bule ones are the real signals
-
 red ones are generated
-
 in data_aug.mat there 3 set of data, including:
-
 X1 -- 243 normal bearing signals, 9×27 fault bearing signals
-
 Xt -- 720(9×80) generated fault signals
-
 X -- X1 mix with Xt
-
 data dimension = 1001
-
 the last one is label
