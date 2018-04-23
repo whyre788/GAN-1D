@@ -1,0 +1,2 @@
+model_checkpoint_path: "B:\\save\\Generator2.ckpt"
+all_model_checkpoint_paths: "B:\\save\\Generator2.ckpt"
