@@ -1,11 +1,16 @@
 # GAN-1D
 using WGAN to generate fault bearing vibration signals
+
 request:
+
 python 3.5+
+
 tensorflow-gpu
+
 numpy scipy os
 
 open cmd and cd to the folder 
+
 $ python train.py 
 
 --learning_rate 0.0000001 #change the learning rate,default 0.0000001
