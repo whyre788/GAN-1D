@@ -17,5 +17,9 @@ $ python train.py
 --train_data x1 #there 9 kinds of signals you can choose,default x1
                   
 your model will be saved at ./checkpoint/ per 100 epochs
+
 $ python test.py 
+
 test you model, output will be saved at ./output/
+
+It takes about 11 hours to run 2000 epochs in Titan XP.
