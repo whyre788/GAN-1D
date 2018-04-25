@@ -179,14 +179,18 @@ tf.summary.scalar('G_loss', G_loss)
 D_solver = tf.train.RMSPropOptimizer(LR).minimize(D_loss, var_list=D_variables)
 G_solver = tf.train.RMSPropOptimizer(LR).minimize(G_loss, var_list=G_variables)
 
-sess.run(tf.global_variables_initializer())
-
 if not os.path.exists('./samples/'):
     os.makedirs('./samples/')
-
+    
 saver = tf.train.Saver()
-tf.add_to_collection('GAN_1D',output)
-model = FLAGS.checkpoint_dir+'GAN1D'
+model = FLAGS.checkpoint_dir+'GAN1D'+FLAGS.train_data
+if not os.path.exists(model + ".ckpt"):
+  sess.run(tf.global_variables_initializer())
+elif tf.train.latest_checkpoint(FLAGS.checkpoint_dir)[-2:] == FLAGS.train_data:
+  save_path = saver.restore(sess,tf.train.latest_checkpoint(FLAGS.checkpoint_dir))
+else:
+  sess.run(tf.global_variables_initializer())
+
 for e in range(epochs):
     for i in range(3):
         real_batch_X = real_batch(real_data, 11, (e+1)*(i+1))
