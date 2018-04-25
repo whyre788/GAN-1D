@@ -145,9 +145,7 @@ b_conv5 = tf.Variable(tf.constant(0.1, shape=[256]), name="b_conv5")
 saver = tf.train.Saver({'W_conv5': W_conv5, 'b_conv5': b_conv5})
 saver.restore(sess, FLAGS.extractor_dir)
 W_conv5 = tf.reshape(W_conv5[0:5,0,0], [5,1,1])
-W_conv5 = tf.Variable(W_conv5)
 b_conv5 = tf.reshape(b_conv5[0], [1])
-b_conv5 = tf.Variable(b_conv5)
 
 def C(X):
     Con = tf.nn.conv1d(X, W_conv5, stride=1, padding='SAME') + b_conv5
