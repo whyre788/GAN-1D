@@ -6,7 +6,7 @@ import scipy.io as sio
 flags = tf.app.flags
 flags.DEFINE_string("dataset", "./data/data4train.mat", "The path to dataset")
 flags.DEFINE_integer("epoch", 2000, "how much time to train [2000001]")
-flags.DEFINE_float("learning_rate", 0.0000005, "Learning rate of for RMS [0.0000005]")
+flags.DEFINE_float("learning_rate", 0.000001, "Learning rate of for RMS [0.0000005]")
 flags.DEFINE_integer("batch_size", 11, "The size of batch images [64]")
 flags.DEFINE_integer("data_dim", 1000, "data dimension")
 flags.DEFINE_integer("sample_rate", 50000, "how many epoch you want to sample once[50000]")
