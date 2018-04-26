@@ -179,8 +179,8 @@ tf.summary.scalar('G_loss', G_loss)
 D_solver = tf.train.RMSPropOptimizer(LR).minimize(D_loss, var_list=D_variables)
 G_solver = tf.train.RMSPropOptimizer(LR).minimize(G_loss, var_list=G_variables)
 
-if not os.path.exists('./samples/'+ FLAGS.train_data):
-    os.makedirs('./samples/'FLAGS.train_data)
+if not os.path.exists('./samples/'):
+    os.makedirs('./samples/')
     
 saver = tf.train.Saver()
 model = FLAGS.checkpoint_dir+'/GAN1D'
