@@ -187,7 +187,7 @@ model = FLAGS.checkpoint_dir+FLAGS.train_data+'/GAN1D'
 if not os.path.exists(model + ".ckpt"):
   sess.run(tf.global_variables_initializer())
 else:
-  save_path = saver.restore(sess,tf.train.latest_checkpoint(FLAGS.checkpoint_dir))
+  save_path = saver.restore(sess,tf.train.latest_checkpoint(FLAGS.checkpoint_dir+FLAGS.train_data))
 
 for e in range(epochs):
     for i in range(3):
