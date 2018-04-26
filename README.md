@@ -27,6 +27,8 @@ your model will be saved at ./checkpoint/ per 100 epochs
 
 test you model, output will be saved at ./output/
 
-It takes about 11 hours to run 2000 epochs in Titan XP.
+It takes about 11 hours to run 2000000 epochs in Titan XP.
 
 signals are from here http://csegroups.case.edu/bearingdatacenter/home
+
+its difficult to train this model, please try different learning rate
