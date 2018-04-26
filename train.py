@@ -179,17 +179,15 @@ tf.summary.scalar('G_loss', G_loss)
 D_solver = tf.train.RMSPropOptimizer(LR).minimize(D_loss, var_list=D_variables)
 G_solver = tf.train.RMSPropOptimizer(LR).minimize(G_loss, var_list=G_variables)
 
-if not os.path.exists('./samples/'):
-    os.makedirs('./samples/')
+if not os.path.exists('./samples/'+ FLAGS.train_data):
+    os.makedirs('./samples/'FLAGS.train_data)
     
 saver = tf.train.Saver()
-model = FLAGS.checkpoint_dir+'GAN1D'+FLAGS.train_data
+model = FLAGS.checkpoint_dir+FLAGS.train_data+'/GAN1D'
 if not os.path.exists(model + ".ckpt"):
   sess.run(tf.global_variables_initializer())
-elif tf.train.latest_checkpoint(FLAGS.checkpoint_dir)[-2:] == FLAGS.train_data:
-  save_path = saver.restore(sess,tf.train.latest_checkpoint(FLAGS.checkpoint_dir))
 else:
-  sess.run(tf.global_variables_initializer())
+  save_path = saver.restore(sess,tf.train.latest_checkpoint(FLAGS.checkpoint_dir))
 
 for e in range(epochs):
     for i in range(3):
@@ -209,4 +207,4 @@ for e in range(epochs):
     if e % FLAGS.sample_rate == 0:
         output_csv = sess.run(output, feed_dict={fake_X: fake_batch_X})
         output_csv = np.array(output_csv)
-        np.savetxt("./samples/sample_"+str(int(e/50000))+'.csv', output_csv, fmt="%f", delimiter=",")
+        np.savetxt("./samples/"+FLAGS.train_data+"/sample_"+str(int(e/50000))+'.csv', output_csv, fmt="%f", delimiter=",")
