@@ -183,11 +183,11 @@ if not os.path.exists('./samples/'+ FLAGS.train_data):
     os.makedirs('./samples/'FLAGS.train_data)
     
 saver = tf.train.Saver()
-model = FLAGS.checkpoint_dir+FLAGS.train_data+'/GAN1D'
+model = FLAGS.checkpoint_dir+'/GAN1D'
 if not os.path.exists(model + ".ckpt"):
   sess.run(tf.global_variables_initializer())
 else:
-  save_path = saver.restore(sess,tf.train.latest_checkpoint(FLAGS.checkpoint_dir+FLAGS.train_data))
+  save_path = saver.restore(sess,tf.train.latest_checkpoint(FLAGS.checkpoint_dir))
 
 for e in range(epochs):
     for i in range(3):
@@ -207,4 +207,4 @@ for e in range(epochs):
     if e % FLAGS.sample_rate == 0:
         output_csv = sess.run(output, feed_dict={fake_X: fake_batch_X})
         output_csv = np.array(output_csv)
-        np.savetxt("./samples/"+FLAGS.train_data+"/sample_"+str(int(e/50000))+'.csv', output_csv, fmt="%f", delimiter=",")
+        np.savetxt("./samples/"+"sample_"+str(e)+'.csv', output_csv, fmt="%f", delimiter=",")
