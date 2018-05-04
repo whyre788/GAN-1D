@@ -5,7 +5,7 @@ import scipy.io as sio
 
 flags = tf.app.flags
 flags.DEFINE_string("dataset", "./data/data4train.mat", "The path to dataset")
-flags.DEFINE_integer("epoch", 2000001, "how much time to train [2000001]")
+flags.DEFINE_integer("epoch", 2000000, "how much time to train [2000000]")
 flags.DEFINE_float("learning_rate", 0.0000005, "Learning rate of for RMS [0.0000005]")
 flags.DEFINE_integer("batch_size", 11, "The size of batch images [64]")
 flags.DEFINE_integer("data_dim", 1000, "data dimension")
@@ -43,7 +43,7 @@ def LeakyReLu(x, alpha=0.1):
 
 batch_size = FLAGS.batch_size
 data_dim = FLAGS.data_dim
-epochs = FLAGS.epoch
+epochs = FLAGS.epoch + 1
 LR = FLAGS.learning_rate
 sess = tf.Session()
 
