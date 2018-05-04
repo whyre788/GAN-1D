@@ -9,6 +9,7 @@ flags.DEFINE_integer("epoch", 2000, "how much time to train [2000001]")
 flags.DEFINE_float("learning_rate", 0.0000001, "Learning rate of for RMS [0.0000005]")
 flags.DEFINE_integer("batch_size", 11, "The size of batch images [64]")
 flags.DEFINE_integer("data_dim", 1000, "data dimension")
+flags.DEFINE_integer("train_times", 3, "Discriminator train times per epoch [3,4,5]")
 flags.DEFINE_integer("sample_rate", 50000, "how many epoch you want to sample once[50000]")
 flags.DEFINE_string("checkpoint_dir", "./checkpoint/", "Directory name to save the checkpoints")
 flags.DEFINE_string("extractor_dir", "./save/CNN.ckpt", "Directory name to the extractor")
@@ -31,6 +32,8 @@ elif FLAGS.train_data =='x4':
     tr = 2.
 elif FLAGS.train_data =='x9':
     tr= 3.5
+elif FLAGS.train_data =='x1':
+    tr= 1.5 
 else:
     tr = 1.
 real_data = real_data/tr
@@ -184,13 +187,10 @@ if not os.path.exists('./samples/'):
     
 saver = tf.train.Saver()
 model = FLAGS.checkpoint_dir+'/GAN1D'
-if not os.path.exists(model + ".ckpt"):
-  sess.run(tf.global_variables_initializer())
-else:
-  save_path = saver.restore(sess,tf.train.latest_checkpoint(FLAGS.checkpoint_dir))
+sess.run(tf.global_variables_initializer())
 
 for e in range(epochs):
-    for i in range(3):
+    for i in range(Flags.train_times):
         real_batch_X = real_batch(real_data, 11, (e+1)*(i+1))
         fake_batch_X = fake_batch(fake_data, 11, (e+1)*(i+1))
         _,D_loss_ = sess.run([D_solver,D_loss],
