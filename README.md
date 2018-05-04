@@ -15,7 +15,7 @@ open cmd and cd to the folder
 
     --learning_rate 0.0000001 #change the learning rate,default 0.0000001
                   
-    --epoch 2000000 #how much epochs to train,default 2000000
+    --epoch 2000000 #how much epochs to train,default 2000000
                   
     --sample_rate 50000 #how many epochs you want to sample once,default 50000
                   
