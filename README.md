@@ -13,7 +13,7 @@ open cmd and cd to the folder
 
     $ python train.py 
 
-    --learning_rate 0.0000001 #change the learning rate,default 0.0000001
+    --learning_rate 0.000001 #change the learning rate,default 0.000001
                   
     --epoch 2000000 #how much epochs to train,default 2000000
                   
